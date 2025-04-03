@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickit Rewards - AI Offers</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="app-container">
+            <!-- App Header -->
+            <div class="app-header">
+                <div style="display: flex; align-items: center;">
+                    <a href="index.html" style="margin-right: 8px; color: var(--gray-medium);">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <span style="font-weight: 600;">AI Recommendations</span>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-sliders header-icon"></i>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Intro Section -->
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <div style="display: inline-flex; align-items: center; background-color: var(--primary-light); padding: 8px 16px; border-radius: 20px; margin-bottom: 16px;">
+                        <i class="fas fa-robot" style="color: var(--primary-color); margin-right: 8px;"></i>
+                        <span style="font-weight: 500; color: var(--primary-dark);">AI-Powered Recommendations</span>
+                    </div>
+                    <p>These offers are personalized for you based on your preferences, past activity, and context.</p>
+                </div>
+                
+                <!-- Recommendation Strength Indicators -->
+                <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+                    <div style="text-align: center; flex: 1;">
+                        <div style="font-weight: 600; font-size: 24px; color: var(--primary-color);">96%</div>
+                        <div style="font-size: 12px; color: var(--gray-medium);">Match Score</div>
+                    </div>
+                    <div style="text-align: center; flex: 1;">
+                        <div style="font-weight: 600; font-size: 24px; color: var(--secondary-color);">12</div>
+                        <div style="font-size: 12px; color: var(--gray-medium);">Personalized Offers</div>
+                    </div>
+                    <div style="text-align: center; flex: 1;">
+                        <div style="font-weight: 600; font-size: 24px; color: var(--success);">3</div>
+                        <div style="font-size: 12px; color: var(--gray-medium);">New Today</div>
+                    </div>
+                </div>
+                
+                <!-- Filter Navigation -->
+                <div style="display: flex; overflow-x: auto; margin-bottom: 16px; padding-bottom: 8px;">
+                    <div style="flex-shrink: 0; padding: 8px 16px; background-color: var(--primary-color); color: white; border-radius: 20px; margin-right: 8px;">
+                        All (12)
+                    </div>
+                    <div style="flex-shrink: 0; padding: 8px 16px; background-color: var(--gray-light); color: var(--gray-dark); border-radius: 20px; margin-right: 8px;">
+                        Dining (5)
+                    </div>
+                    <div style="flex-shrink: 0; padding: 8px 16px; background-color: var(--gray-light); color: var(--gray-dark); border-radius: 20px; margin-right: 8px;">
+                        Entertainment (3)
+                    </div>
+                    <div style="flex-shrink: 0; padding: 8px 16px; background-color: var(--gray-light); color: var(--gray-dark); border-radius: 20px; margin-right: 8px;">
+                        Experiences (4)
+                    </div>
+                </div>
+                
+                <!-- Top Recommendation Card -->
+                <div class="card" style="margin-bottom: 24px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 12px; right: 12px;">
+                        <span class="ai-badge">
+                            <i class="fas fa-star" style="margin-right: 4px;"></i>
+                            96% Match
+                        </span>
+                    </div>
+                    
+                    <div style="height: 160px; margin: -16px -16px 16px -16px; background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; display: flex; align-items: flex-end; justify-content: center; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); padding-bottom: 20px;">
+                        <span style="font-size: 24px; font-weight: 600;">Dinner at Pierchic</span>
+                    </div>
+                    
+                    <div style="margin-bottom: 16px;">
+                        <div style="font-weight: 600; font-size: 18px;">Exclusive Fine Dining Experience</div>
+                        <div style="color: var(--gray-medium);">Jumeirah Al Qasr</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <div>
+                            <div style="font-weight: 600;">1,500 points</div>
+                            <div style="color: var(--gray-medium); font-size: 12px;">Value: AED 800</div>
+                        </div>
+                        <button class="button">Redeem Now</button>
+                    </div>
+                    
+                    <!-- AI Explanation -->
+                    <div class="ai-explanation">
+                        <div style="font-weight: 500; margin-bottom: 4px; display: flex; align-items: center;">
+                            <i class="fas fa-lightbulb" style="color: var(--primary-color); margin-right: 6px;"></i>
+                            Why we recommend this
+                        </div>
+                        <p style="font-size: 14px;">
+                            This aligns with your preference for fine dining and your recent activity at similar upscale restaurants. It's also available during your preferred dining hours (evening) and is near your frequently visited locations.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- More Recommendations -->
+                <div class="section-title">More For You</div>
+                
+                <!-- Card 1 -->
+                <div class="card" style="display: flex; margin-bottom: 16px;">
+                    <div style="flex-shrink: 0; width: 80px; height: 80px; background-color: var(--primary-light); display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <i class="fas fa-ticket" style="color: var(--primary-dark); font-size: 24px;"></i>
+                    </div>
+                    <div style="flex-grow: 1; padding-left: 16px;">
+                        <div style="font-weight: 600;">Desert Safari Experience</div>
+                        <div style="color: var(--gray-medium); font-size: 14px;">Arabian Adventures</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <div style="font-weight: 500;">850 points</div>
+                            <span class="ai-badge" style="font-size: 10px;">92% Match</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card" style="display: flex; margin-bottom: 16px;">
+                    <div style="flex-shrink: 0; width: 80px; height: 80px; background-color: var(--primary-light); display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <i class="fas fa-film" style="color: var(--primary-dark); font-size: 24px;"></i>
+                    </div>
+                    <div style="flex-grow: 1; padding-left: 16px;">
+                        <div style="font-weight: 600;">Movie Tickets at Roxy</div>
+                        <div style="color: var(--gray-medium); font-size: 14px;">Roxy Cinemas, City Walk</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <div style="font-weight: 500;">350 points</div>
+                            <span class="ai-badge" style="font-size: 10px;">87% Match</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card" style="display: flex; margin-bottom: 16px;">
+                    <div style="flex-shrink: 0; width: 80px; height: 80px; background-color: var(--primary-light); display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <i class="fas fa-utensils" style="color: var(--primary-dark); font-size: 24px;"></i>
+                    </div>
+                    <div style="flex-grow: 1; padding-left: 16px;">
+                        <div style="font-weight: 600;">Lunch at Hillhouse Brasserie</div>
+                        <div style="color: var(--gray-medium); font-size: 14px;">Dubai Hills Golf Club</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <div style="font-weight: 500;">600 points</div>
+                            <span class="ai-badge" style="font-size: 10px;">85% Match</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Location-Based Section -->
+                <div class="section-title">Near You Now 
+                    <span class="ai-badge" style="margin-left: 8px; font-size: 10px;">
+                        <i class="fas fa-location-dot" style="margin-right: 4px;"></i>
+                        DIFC Area
+                    </span>
+                </div>
+                
+                <!-- Map Component -->
+                <div style="height: 180px; background-color: #f0f0f0; border-radius: var(--border-radius); margin-bottom: 16px; position: relative; overflow: hidden;">
+                    <!-- Mock Map -->
+                    <div style="height: 100%; width: 100%; background-color: #e8e8e8; position: absolute;"></div>
+                    
+                    <!-- Pins -->
+                    <div style="position: absolute; top: 30%; left: 40%; background-color: var(--primary-color); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                        1
+                    </div>
+                    <div style="position: absolute; top: 50%; left: 60%; background-color: var(--primary-color); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                        2
+                    </div>
+                    <div style="position: absolute; top: 70%; left: 30%; background-color: var(--primary-color); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                        3
+                    </div>
+                    
+                    <!-- Your Location -->
+                    <div style="position: absolute; top: 60%; left: 50%; background-color: white; border: 2px solid var(--primary-color); width: 16px; height: 16px; border-radius: 50%;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 6px; height: 6px; background-color: var(--primary-color); border-radius: 50%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Nearby Offers -->
+                <div style="display: flex; overflow-x: auto; margin-bottom: 24px; padding-bottom: 8px;">
+                    <!-- Offer 1 -->
+                    <div style="flex-shrink: 0; width: 200px; background-color: white; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-right: 12px; overflow: hidden;">
+                        <div style="height: 100px; background-image: url('https://images.unsplash.com/photo-1504630083234-14187a9df0f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center; position: relative;">
+                            <div style="position: absolute; top: 8px; left: 8px; background-color: var(--primary-color); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                                1
+                            </div>
+                        </div>
+                        <div style="padding: 12px;">
+                            <div style="font-weight: 600; font-size: 14px;">Coffee at % Arabica</div>
+                            <div style="color: var(--gray-medium); font-size: 12px;">Dubai Mall</div>
+                            <div style="font-weight: 500; margin-top: 8px;">150 points</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Offer 2 -->
+                    <div style="flex-shrink: 0; width: 200px; background-color: white; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-right: 12px; overflow: hidden;">
+                        <div style="height: 100px; background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center; position: relative;">
+                            <div style="position: absolute; top: 8px; left: 8px; background-color: var(--primary-color); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                                2
+                            </div>
+                        </div>
+                        <div style="padding: 12px;">
+                            <div style="font-weight: 600; font-size: 14px;">Lunch at DIFC Food Hall</div>
+                            <div style="color: var(--gray-medium); font-size: 12px;">DIFC</div>
+                            <div style="font-weight: 500; margin-top: 8px;">350 points</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Offer 3 -->
+                    <div style="flex-shrink: 0; width: 200px; background-color: white; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-right: 12px; overflow: hidden;">
+                        <div style="height: 100px; background-image: url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center; position: relative;">
+                            <div style="position: absolute; top: 8px; left: 8px; background-color: var(--primary-color); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                                3
+                            </div>
+                        </div>
+                        <div style="padding: 12px;">
+                            <div style="font-weight: 600; font-size: 14px;">Art Gallery Exhibition</div>
+                            <div style="color: var(--gray-medium); font-size: 12px;">DIFC Gate Village</div>
+                            <div style="font-weight: 500; margin-top: 8px;">250 points</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feedback Section -->
+                <div style="background-color: #f8f9fa; padding: 16px; border-radius: var(--border-radius); margin-bottom: 24px;">
+                    <div style="font-weight: 500; margin-bottom: 8px;">Help us improve your recommendations</div>
+                    <p style="font-size: 14px; margin-bottom: 16px;">
+                        Are these recommendations relevant to you? Your feedback helps our AI improve.
+                    </p>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="button" style="flex: 1; padding: 10px;">
+                            <i class="fas fa-thumbs-up" style="margin-right: 6px;"></i>
+                            Yes
+                        </button>
+                        <button class="button button-secondary" style="flex: 1; padding: 10px;">
+                            <i class="fas fa-thumbs-down" style="margin-right: 6px;"></i>
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <div class="nav-item">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span class="nav-text">Home</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-search nav-icon"></i>
+                    <span class="nav-text">Explore</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-gift nav-icon"></i>
+                    <span class="nav-text">Rewards</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-user nav-icon"></i>
+                    <span class="nav-text">Profile</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-comment-alt nav-icon"></i>
+                    <span class="nav-text">Support</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html> 

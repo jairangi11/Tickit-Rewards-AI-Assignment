@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickit Rewards AI Wireframes</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .wireframes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .wireframe-card {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .wireframe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .wireframe-thumbnail {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .wireframe-thumbnail img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .wireframe-info {
+            padding: 16px;
+        }
+        
+        .wireframe-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .wireframe-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .wireframe-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .welcome-card {
+            background-color: #f0f5ff;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 36px;
+            border-left: 5px solid #3e63dd;
+            box-shadow: 0 6px 18px rgba(62, 99, 221, 0.12);
+        }
+        
+        .welcome-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #2a2f45;
+        }
+        
+        .welcome-message {
+            line-height: 1.7;
+            color: #444;
+            font-size: 16px;
+        }
+        
+        .welcome-message p {
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tickit Rewards AI Wireframes</h1>
+    </header>
+    
+    <main>
+        <div class="welcome-card">
+            <div class="welcome-title">Welcome, Amir Atiatalla</div>
+            <div class="welcome-message">
+                <p>Thank you for taking the time to review these Tickit Rewards AI Strategy wireframes. This presentation demonstrates how we're integrating advanced AI capabilities into the Tickit loyalty platform to enhance user experience and drive business value.</p>
+                <p>Each wireframe showcases a key component of our AI strategy implementation, from personalized recommendations to churn prevention and partner analytics. Please click on any wireframe to explore the detailed interface designs and AI features. You can navigate back to this index page at any time.</p>
+            </div>
+        </div>
+        
+        <div class="wireframes-list">
+            <div class="wireframe-card">
+                <div class="wireframe-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Home Screen with AI">
+                </div>
+                <div class="wireframe-info">
+                    <h2 class="wireframe-title">Home Screen with AI Personalization</h2>
+                    <p class="wireframe-desc">The main app screen featuring personalized offers and recommendations powered by AI.</p>
+                    <a href="home.html" class="wireframe-link">View Wireframe</a>
+                </div>
+            </div>
+            
+            <div class="wireframe-card">
+                <div class="wireframe-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="User Profile">
+                </div>
+                <div class="wireframe-info">
+                    <h2 class="wireframe-title">User Profile with Churn Insights</h2>
+                    <p class="wireframe-desc">User profile screen showing loyalty status, points, and personalized retention offers.</p>
+                    <a href="profile.html" class="wireframe-link">View Wireframe</a>
+                </div>
+            </div>
+            
+            <div class="wireframe-card">
+                <div class="wireframe-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="AI Chatbot">
+                </div>
+                <div class="wireframe-info">
+                    <h2 class="wireframe-title">AI Chatbot Interface</h2>
+                    <p class="wireframe-desc">Conversational AI interface for support, with context-aware responses and agent handoff.</p>
+                    <a href="chatbot.html" class="wireframe-link">View Wireframe</a>
+                </div>
+            </div>
+            
+            <div class="wireframe-card">
+                <div class="wireframe-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Offers Screen">
+                </div>
+                <div class="wireframe-info">
+                    <h2 class="wireframe-title">AI-Curated Offers</h2>
+                    <p class="wireframe-desc">Explore screen showing AI-curated offers with personalized recommendations and explanations.</p>
+                    <a href="offers.html" class="wireframe-link">View Wireframe</a>
+                </div>
+            </div>
+            
+            <div class="wireframe-card">
+                <div class="wireframe-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Partner Dashboard">
+                </div>
+                <div class="wireframe-info">
+                    <h2 class="wireframe-title">Partner Insights Dashboard</h2>
+                    <p class="wireframe-desc">Business intelligence dashboard for partners, showing AI-generated customer insights.</p>
+                    <a href="partner.html" class="wireframe-link">View Wireframe</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer style="margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; text-align: center;">
+        <p>Tickit Rewards AI Strategy Implementation - Wireframes</p>
+        <p style="margin-top: 8px; color: #666; font-size: 14px;">Designed by Jay Rangi as part of the Tickit Rewards Assignment</p>
+        <div style="margin-top: 16px; color: #666; font-size: 14px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="tel:+917727051187" style="color: #3e63dd; text-decoration: none;">+91-7727051187</a>
+            <a href="mailto:jairangi11101995@gmail.com" style="color: #3e63dd; text-decoration: none;">jairangi11101995@gmail.com</a>
+            <a href="https://www.linkedin.com/in/jayrangi/" target="_blank" style="color: #3e63dd; text-decoration: none;">linkedin.com/in/jayrangi</a>
+        </div>
+    </footer>
+</body>
+</html> 

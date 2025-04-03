@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickit Rewards - Profile</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="app-container">
+            <!-- App Header -->
+            <div class="app-header">
+                <div style="display: flex; align-items: center;">
+                    <a href="index.html" style="margin-right: 8px; color: var(--gray-medium);">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <span style="font-weight: 600;">My Profile</span>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-ellipsis-v header-icon"></i>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- User Profile Details -->
+                <div class="card">
+                    <div class="profile-header">
+                        <div class="profile-avatar" style="width: 80px; height: 80px; background-image: url('https://images.unsplash.com/photo-1566753323558-f4e0952af115?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'); background-size: cover;"></div>
+                        <div class="profile-info">
+                            <div class="profile-name" style="font-size: 22px;">Amir Atiatalla</div>
+                            <div class="profile-tier">Gold Member</div>
+                            <div style="margin-top: 8px; font-size: 14px; color: var(--gray-medium);">
+                                Member since October 2021
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; margin-top: 16px;">
+                        <div style="flex: 1; text-align: center; padding: 8px; border-right: 1px solid #eee;">
+                            <div style="font-weight: 600; font-size: 20px;">2,450</div>
+                            <div style="font-size: 14px; color: var(--gray-medium);">Points</div>
+                        </div>
+                        <div style="flex: 1; text-align: center; padding: 8px; border-right: 1px solid #eee;">
+                            <div style="font-weight: 600; font-size: 20px;">23</div>
+                            <div style="font-size: 14px; color: var(--gray-medium);">Redeemed</div>
+                        </div>
+                        <div style="flex: 1; text-align: center; padding: 8px;">
+                            <div style="font-weight: 600; font-size: 20px;">1,200</div>
+                            <div style="font-size: 14px; color: var(--gray-medium);">To Platinum</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tier Progress -->
+                <div class="card">
+                    <div class="section-title">Tier Progress</div>
+                    
+                    <div style="position: relative; height: 8px; background-color: #eee; border-radius: 4px; margin-bottom: 16px;">
+                        <div style="position: absolute; top: 0; left: 0; height: 100%; width: 65%; background-color: var(--secondary-color); border-radius: 4px;"></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                        <span>
+                            <i class="fas fa-medal" style="color: var(--secondary-color);"></i>
+                            Gold
+                        </span>
+                        <span>1,200 points to Platinum</span>
+                        <span>
+                            <i class="fas fa-crown" style="color: #a67c00;"></i>
+                            Platinum
+                        </span>
+                    </div>
+                    
+                    <!-- AI Insight -->
+                    <div class="ai-explanation" style="margin-top: 16px;">
+                        <i class="fas fa-robot" style="margin-right: 6px;"></i>
+                        At your current activity rate, you'll reach Platinum in approximately 3 months.
+                    </div>
+                </div>
+                
+                <!-- Activity Trend with AI Insights -->
+                <div class="card">
+                    <div class="section-title">Activity Trend 
+                        <span class="ai-badge" style="font-size: 10px; margin-left: 8px;">
+                            <i class="fas fa-chart-line" style="margin-right: 4px;"></i>
+                            AI Analysis
+                        </span>
+                    </div>
+                    
+                    <!-- Mock Chart -->
+                    <div style="height: 150px; background-color: #f8f9fa; border-radius: 8px; display: flex; align-items: flex-end; padding: 8px; margin-bottom: 16px;">
+                        <div style="flex: 1; height: 35%; background-color: #e1e8fa; margin: 0 2px; position: relative;">
+                            <span style="position: absolute; bottom: -20px; left: 0; font-size: 10px;">Apr</span>
+                        </div>
+                        <div style="flex: 1; height: 55%; background-color: #e1e8fa; margin: 0 2px; position: relative;">
+                            <span style="position: absolute; bottom: -20px; left: 0; font-size: 10px;">May</span>
+                        </div>
+                        <div style="flex: 1; height: 70%; background-color: #e1e8fa; margin: 0 2px; position: relative;">
+                            <span style="position: absolute; bottom: -20px; left: 0; font-size: 10px;">Jun</span>
+                        </div>
+                        <div style="flex: 1; height: 90%; background-color: #e1e8fa; margin: 0 2px; position: relative;">
+                            <span style="position: absolute; bottom: -20px; left: 0; font-size: 10px;">Jul</span>
+                        </div>
+                        <div style="flex: 1; height: 80%; background-color: #e1e8fa; margin: 0 2px; position: relative;">
+                            <span style="position: absolute; bottom: -20px; left: 0; font-size: 10px;">Aug</span>
+                        </div>
+                        <div style="flex: 1; height: 25%; background-color: var(--warning); margin: 0 2px; position: relative;">
+                            <span style="position: absolute; bottom: -20px; left: 0; font-size: 10px;">Sep</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Churn Risk Alert -->
+                    <div style="background-color: #fff8e6; border-left: 3px solid var(--warning); padding: 12px; margin-bottom: 16px; border-radius: 4px;">
+                        <div style="font-weight: 600; margin-bottom: 4px; display: flex; align-items: center;">
+                            <i class="fas fa-exclamation-triangle" style="color: var(--warning); margin-right: 8px;"></i>
+                            Activity Decrease Detected
+                        </div>
+                        <p style="font-size: 14px;">
+                            Your activity has decreased by 70% this month. We noticed you haven't redeemed any offers recently.
+                        </p>
+                    </div>
+                    
+                    <!-- Personalized Retention Offer -->
+                    <div style="border: 1px dashed var(--primary-color); padding: 12px; border-radius: 8px; background-color: #f7f9ff;">
+                        <div style="font-weight: 600; margin-bottom: 8px; color: var(--primary-color);">
+                            <i class="fas fa-gift" style="margin-right: 6px;"></i>
+                            Special Offer Just For You
+                        </div>
+                        <p style="font-size: 14px; margin-bottom: 12px;">
+                            We've selected an exclusive offer based on your preferences for fine dining. Redeem by Oct 15 to get a 20% point bonus!
+                        </p>
+                        <button class="button" style="width: 100%;">
+                            View Special Offer
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Preferences Section -->
+                <div class="card">
+                    <div class="section-title">My Preferences</div>
+                    
+                    <div style="margin-bottom: 16px;">
+                        <div style="font-weight: 500; margin-bottom: 8px;">Favorite Categories</div>
+                        <div>
+                            <span class="tag">Fine Dining</span>
+                            <span class="tag">Adventure</span>
+                            <span class="tag">Entertainment</span>
+                            <span class="tag">Luxury Hotels</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="font-weight: 500; margin-bottom: 8px;">Communication Preferences</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span>Push Notifications</span>
+                            <div style="width: 40px; height: 20px; background-color: var(--primary-color); border-radius: 10px; position: relative;">
+                                <div style="position: absolute; width: 18px; height: 18px; background-color: white; border-radius: 50%; top: 1px; right: 1px;"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <span>Email Updates</span>
+                            <div style="width: 40px; height: 20px; background-color: var(--primary-color); border-radius: 10px; position: relative;">
+                                <div style="position: absolute; width: 18px; height: 18px; background-color: white; border-radius: 50%; top: 1px; right: 1px;"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+                            <span>Location-Based Offers</span>
+                            <div style="width: 40px; height: 20px; background-color: var(--gray-light); border-radius: 10px; position: relative;">
+                                <div style="position: absolute; width: 18px; height: 18px; background-color: white; border-radius: 50%; top: 1px; left: 1px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Points History -->
+                <div class="card">
+                    <div class="section-title">Points History</div>
+                    
+                    <div style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <div style="font-weight: 500;">Dinner at Nobu</div>
+                            <div style="font-size: 12px; color: var(--gray-medium);">September 5, 2023</div>
+                        </div>
+                        <div style="color: var(--success); font-weight: 600;">+350 points</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <div style="font-weight: 500;">Movie Tickets Redemption</div>
+                            <div style="font-size: 12px; color: var(--gray-medium);">August 28, 2023</div>
+                        </div>
+                        <div style="color: var(--error); font-weight: 600;">-200 points</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px;">
+                        <div>
+                            <div style="font-weight: 500;">Dubai Mall Shopping</div>
+                            <div style="font-size: 12px; color: var(--gray-medium);">August 15, 2023</div>
+                        </div>
+                        <div style="color: var(--success); font-weight: 600;">+450 points</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 16px;">
+                        <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                            View All History
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <div class="nav-item">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span class="nav-text">Home</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-search nav-icon"></i>
+                    <span class="nav-text">Explore</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-gift nav-icon"></i>
+                    <span class="nav-text">Rewards</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-user nav-icon"></i>
+                    <span class="nav-text">Profile</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-comment-alt nav-icon"></i>
+                    <span class="nav-text">Support</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html> 
