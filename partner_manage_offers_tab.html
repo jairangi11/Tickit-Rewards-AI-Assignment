@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickit Partner - Manage Offers</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Partner Portal specific styles */
+        .dashboard-container {
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .sidebar {
+            width: 220px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+            border-right: 1px solid #eee;
+            padding: 20px 0;
+            z-index: 100;
+        }
+        
+        .sidebar-logo {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar-nav li {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--gray-dark);
+            cursor: pointer;
+        }
+        
+        .sidebar-nav li.active {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .sidebar-nav li i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-dashboard {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .dashboard-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .dashboard-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .dashboard-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+        
+        .tag.active {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+        
+        .tag.scheduled {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+        
+        .tag.expired {
+            background-color: var(--gray-light);
+            color: var(--gray-medium);
+        }
+        
+        .tag.draft {
+            background-color: var(--warning-light);
+            color: var(--warning);
+        }
+        
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .offer-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .offer-card-image {
+            height: 140px;
+            background-color: var(--gray-light);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .offer-card-content {
+            padding: 16px;
+        }
+        
+        .offer-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+        
+        .offer-action-btn {
+            padding: 6px 12px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .offer-action-btn.secondary {
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+        }
+        
+        .offer-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .offer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .offer-table th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            color: var(--gray-medium);
+            font-weight: 500;
+        }
+        
+        .offer-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 900;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            z-index: 1000;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-footer {
+            padding: 16px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: .4s;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .4s;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='36' viewBox='0 0 120 36'><text fill='%233e63dd' font-family='Arial' font-weight='bold' font-size='24' x='0' y='28'>TICKIT</text><text fill='%23333333' font-family='Arial' font-weight='normal' font-size='12' x='0' y='36'>Partner Portal</text></svg>" alt="Tickit Partner Portal">
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li style="background-color: #f5f7ff; color: var(--primary-color); padding: 10px 20px; display: flex; align-items: center; margin-bottom: 10px;">
+                    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-arrow-left" style="margin-right: 10px;"></i>
+                        <span>Back to Wireframes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="partner_dashboard_tab.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="partner_ai_insights_tab.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-chart-pie"></i> AI Insights
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="partner_manage_offers_tab.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-tag"></i> Manage Offers
+                    </a>
+                </li>
+                <li>
+                    <a href="partner_customer_data_tab.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-users"></i> Customer Data
+                    </a>
+                </li>
+                <li>
+                    <a href="partner_marketing_tools_tab.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-bullhorn"></i> Marketing Tools
+                    </a>
+                </li>
+                <li>
+                    <a href="partner_settings_tab.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Main Dashboard -->
+        <div class="main-dashboard">
+            <div class="dashboard-header">
+                <div>
+                    <div class="dashboard-title">Manage Offers</div>
+                    <div style="color: var(--gray-medium);">Create and manage loyalty offers for Tickit members</div>
+                </div>
+                <button class="button primary" onclick="showCreateOfferModal()">
+                    <i class="fas fa-plus" style="margin-right: 8px;"></i>
+                    Create New Offer
+                </button>
+            </div>
+            
+            <!-- Filter Options -->
+            <div class="offer-filter">
+                <button class="filter-btn active">All Offers (12)</button>
+                <button class="filter-btn">Active (5)</button>
+                <button class="filter-btn">Scheduled (3)</button>
+                <button class="filter-btn">Drafts (2)</button>
+                <button class="filter-btn">Expired (2)</button>
+                <div style="flex: 1;"></div>
+                <div style="position: relative;">
+                    <input type="text" placeholder="Search offers..." style="padding: 8px 16px; border-radius: 20px; border: 1px solid #e0e0e0; width: 200px; padding-left: 36px;">
+                    <i class="fas fa-search" style="position: absolute; left: 14px; top: 10px; color: var(--gray-medium);"></i>
+                </div>
+            </div>
+            
+            <!-- AI-Powered Recommendations -->
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="fas fa-lightbulb" style="color: var(--warning); margin-right: 8px;"></i>
+                    AI-Powered Offer Recommendations
+                </div>
+                
+                <div style="padding: 16px; background-color: var(--primary-light); border-radius: 8px; margin-bottom: 16px;">
+                    <div style="display: flex; align-items: flex-start;">
+                        <i class="fas fa-chart-line" style="color: var(--primary-color); margin-right: 12px; margin-top: 2px;"></i>
+                        <div>
+                            <div style="font-weight: 600; margin-bottom: 4px;">Based on user behavior analysis, we recommend a "Weekday Lunch Special" offer</div>
+                            <div style="color: var(--gray-dark); font-size: 14px;">
+                                Our AI analysis shows a 15% decrease in weekday lunch bookings compared to last month. Creating a special weekday lunch offer could drive more traffic during this period and increase overall revenue.
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button class="button primary" style="padding: 6px 12px; font-size: 14px;">Create Recommended Offer</button>
+                                <button class="button secondary" style="padding: 6px 12px; font-size: 14px; margin-left: 10px;">View Analysis</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: center;">
+                    <a href="partner_ai_insights_tab.html" style="color: var(--primary-color); text-decoration: none; font-weight: 500; font-size: 14px;">
+                        View More AI Insights
+                        <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Active Offers -->
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="fas fa-star" style="color: var(--primary-color); margin-right: 8px;"></i>
+                    Active Offers
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <th style="text-align: left; padding: 12px 15px; color: var(--gray-medium); font-weight: 500; font-size: 14px;">Offer Name</th>
+                                <th style="text-align: left; padding: 12px 15px; color: var(--gray-medium); font-weight: 500; font-size: 14px;">Points</th>
+                                <th style="text-align: left; padding: 12px 15px; color: var(--gray-medium); font-weight: 500; font-size: 14px;">Redemptions</th>
+                                <th style="text-align: left; padding: 12px 15px; color: var(--gray-medium); font-weight: 500; font-size: 14px;">Valid Until</th>
+                                <th style="text-align: right; padding: 12px 15px; color: var(--gray-medium); font-weight: 500; font-size: 14px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Active Offer 1 -->
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div style="width: 40px; height: 40px; border-radius: 6px; background-color: var(--primary-light); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                            <i class="fas fa-utensils" style="color: var(--primary-color);"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; font-size: 15px; margin-bottom: 3px;">Weekend Dinner for Two</div>
+                                            <div style="font-size: 13px; color: var(--gray-medium);">Luxury dining experience with a special menu</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px; font-weight: 500;">1,500 points</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px; color: var(--success); font-weight: 500;">485</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px;">30 Dec 2023</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle; text-align: right;">
+                                    <button class="button" style="background-color: var(--primary-color); color: white; border: none; border-radius: 4px; padding: 7px 12px; margin-right: 8px; font-size: 13px;">View Profile</button>
+                                    <button class="button secondary" style="padding: 7px 12px; font-size: 13px;">Edit</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Active Offer 2 -->
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div style="width: 40px; height: 40px; border-radius: 6px; background-color: var(--secondary-light); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                            <i class="fas fa-glass-cheers" style="color: var(--secondary-color);"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; font-size: 15px; margin-bottom: 3px;">Signature Tasting Menu</div>
+                                            <div style="font-size: 13px; color: var(--gray-medium);">Chef's special 5-course menu with wine pairing</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px; font-weight: 500;">2,500 points</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px; color: var(--success); font-weight: 500;">356</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px;">15 Jan 2024</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle; text-align: right;">
+                                    <button class="button" style="background-color: var(--primary-color); color: white; border: none; border-radius: 4px; padding: 7px 12px; margin-right: 8px; font-size: 13px;">View Profile</button>
+                                    <button class="button secondary" style="padding: 7px 12px; font-size: 13px;">Edit</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Active Offer 3 -->
+                            <tr>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div style="width: 40px; height: 40px; border-radius: 6px; background-color: var(--success-light); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                            <i class="fas fa-umbrella-beach" style="color: var(--success);"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; font-size: 15px; margin-bottom: 3px;">Lunch with Sea View</div>
+                                            <div style="font-size: 13px; color: var(--gray-medium);">Exclusive lunch with sea view seating</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px; font-weight: 500;">1,200 points</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px; color: var(--success); font-weight: 500;">289</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle;">
+                                    <div style="font-size: 14px;">15 Jan 2024</div>
+                                </td>
+                                <td style="padding: 16px 15px; vertical-align: middle; text-align: right;">
+                                    <button class="button" style="background-color: var(--primary-color); color: white; border: none; border-radius: 4px; padding: 7px 12px; margin-right: 8px; font-size: 13px;">View Profile</button>
+                                    <button class="button secondary" style="padding: 7px 12px; font-size: 13px;">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <div style="color: var(--gray-medium); font-size: 14px;">Showing 3 of 5 active offers</div>
+                    <div style="display: flex; align-items: center;">
+                        <button style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chevron-left" style="font-size: 12px;"></i>
+                        </button>
+                        <button style="width: 30px; height: 30px; border: 1px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">1</button>
+                        <button style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">2</button>
+                        <button style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chevron-right" style="font-size: 12px;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All Offers Table -->
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="fas fa-list" style="color: var(--primary-color); margin-right: 8px;"></i>
+                    All Offers
+                </div>
+                
+                <table class="offer-table">
+                    <thead>
+                        <tr>
+                            <th>Offer Name</th>
+                            <th>Points</th>
+                            <th>Status</th>
+                            <th>Redemptions</th>
+                            <th>Valid Until</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Weekend Dinner for Two</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Special weekend menu for two</div>
+                            </td>
+                            <td>1,500</td>
+                            <td><span class="tag active">Active</span></td>
+                            <td>485</td>
+                            <td>30 Dec 2023</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Edit</button>
+                                <button class="offer-action-btn secondary">Analytics</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Signature Tasting Menu</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Chef's 5-course tasting menu</div>
+                            </td>
+                            <td>2,500</td>
+                            <td><span class="tag active">Active</span></td>
+                            <td>356</td>
+                            <td>15 Jan 2024</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Edit</button>
+                                <button class="offer-action-btn secondary">Analytics</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Lunch with Sea View</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Exclusive lunch with sea view seating</div>
+                            </td>
+                            <td>1,200</td>
+                            <td><span class="tag active">Active</span></td>
+                            <td>289</td>
+                            <td>15 Jan 2024</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Edit</button>
+                                <button class="offer-action-btn secondary">Analytics</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Summer Special Offer</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Summer menu with beach view</div>
+                            </td>
+                            <td>1,800</td>
+                            <td><span class="tag scheduled">Scheduled</span></td>
+                            <td>0</td>
+                            <td>30 Sep 2024</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Edit</button>
+                                <button class="offer-action-btn secondary">Preview</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Valentine's Day Special</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Romantic dinner with champagne</div>
+                            </td>
+                            <td>3,000</td>
+                            <td><span class="tag scheduled">Scheduled</span></td>
+                            <td>0</td>
+                            <td>14 Feb 2024</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Edit</button>
+                                <button class="offer-action-btn secondary">Preview</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Holiday Feast</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Seasonal special menu</div>
+                            </td>
+                            <td>2,000</td>
+                            <td><span class="tag draft">Draft</span></td>
+                            <td>0</td>
+                            <td>-</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Edit</button>
+                                <button class="offer-action-btn secondary">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">Ramadan Iftar</div>
+                                <div style="font-size: 12px; color: var(--gray-medium);">Special Ramadan menu</div>
+                            </td>
+                            <td>1,700</td>
+                            <td><span class="tag expired">Expired</span></td>
+                            <td>412</td>
+                            <td>15 May 2023</td>
+                            <td>
+                                <button class="offer-action-btn" style="margin-right: 4px;">Renew</button>
+                                <button class="offer-action-btn secondary">Analytics</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="display: flex; justify-content: center; margin-top: 20px;">
+                    <div style="display: flex; align-items: center;">
+                        <button style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chevron-left" style="font-size: 12px;"></i>
+                        </button>
+                        <button style="width: 30px; height: 30px; border: 1px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">1</button>
+                        <button style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">2</button>
+                        <button style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; margin-right: 6px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chevron-right" style="font-size: 12px;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Create Offer Modal -->
+    <div class="modal-backdrop" id="createOfferModalBackdrop"></div>
+    <div class="modal" id="createOfferModal">
+        <div class="modal-header">
+            <div class="modal-title">Create New Offer</div>
+            <div class="modal-close" onclick="hideCreateOfferModal()">&times;</div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="form-label">Offer Title</label>
+                <input type="text" class="form-control" placeholder="Enter offer title">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" placeholder="Enter offer description"></textarea>
+            </div>
+            
+            <div style="display: flex; gap: 16px;">
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Points Required</label>
+                    <input type="number" class="form-control" placeholder="Enter points">
+                </div>
+                
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Limit Per Customer</label>
+                    <input type="number" class="form-control" placeholder="Enter limit">
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 16px;">
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" class="form-control">
+                </div>
+                
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label">End Date</label>
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Upload Image</label>
+                <input type="file" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Target Audience</label>
+                <select class="form-control">
+                    <option>All Customers</option>
+                    <option>Gold Tier Members</option>
+                    <option>Silver Tier Members</option>
+                    <option>New Customers</option>
+                    <option>Custom Segment...</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" style="margin-bottom: 12px;">Offer Exclusivity</label>
+                <div style="display: flex; gap: 20px;">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" id="exclusive_yes" name="exclusive" value="yes">
+                        <label for="exclusive_yes" style="margin-left: 8px;">Tickit Exclusive</label>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" id="exclusive_no" name="exclusive" value="no" checked>
+                        <label for="exclusive_no" style="margin-left: 8px;">Public Offer</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <label class="form-label" style="margin-bottom: 0;">Enable AI Optimization</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div style="font-size: 12px; color: var(--gray-medium); margin-top: 4px;">
+                    Let AI optimize your offer targeting and timing based on customer behavior
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="button secondary" onclick="hideCreateOfferModal()">Cancel</button>
+            <button class="button primary">Save as Draft</button>
+            <button class="button primary">Publish Offer</button>
+        </div>
+    </div>
+    
+    <script>
+        function showCreateOfferModal() {
+            document.getElementById('createOfferModal').style.display = 'block';
+            document.getElementById('createOfferModalBackdrop').style.display = 'block';
+        }
+        
+        function hideCreateOfferModal() {
+            document.getElementById('createOfferModal').style.display = 'none';
+            document.getElementById('createOfferModalBackdrop').style.display = 'none';
+        }
+    </script>
+</body>
+</html> 
